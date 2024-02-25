@@ -1,12 +1,13 @@
 <style scoped>
 .webcamImage {
     width: 100%;
+    vertical-align: bottom;
 }
 
 .webcamFpsOutput {
     display: inline-block;
     position: absolute;
-    bottom: 6px;
+    bottom: 0;
     right: 0;
     background: rgba(0, 0, 0, 0.8);
     padding: 3px 10px;

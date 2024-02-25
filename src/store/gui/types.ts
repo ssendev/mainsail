@@ -51,6 +51,12 @@ export interface GuiState {
         widescreenLayout2: GuiStateLayoutoption[]
         widescreenLayout3: GuiStateLayoutoption[]
     }
+    dashboardCamBackgrounds: {
+        mobile: CamBackground
+        tablet: CamBackground
+        desktop: CamBackground
+        widescreen: CamBackground
+    }
     editor: {
         escToClose: boolean
         confirmUnsavedChanges: boolean
@@ -164,6 +170,13 @@ export interface GuiState {
             }
         }
     }
+}
+
+export interface CamBackground {
+    align: number,
+    alpha: number,
+    contain: boolean
+    enabled: boolean,
 }
 
 export interface GuiStateLayoutoption {

@@ -8,6 +8,15 @@
 
 :root {
     --app-height: 100%;
+    --v-panel-base-transparent-maybe: var(--v-panel-base);
+    --v-panel-base-transparent: var(--v-panel-base);
+    --v-toolbar-base-transparent: var(--v-toolbar-base);
+    --v-primary-base-transparent: var(--v-primary-base);
+    --v-warning-base-transparent: var(--v-warning-base);
+    /* 
+    #272727 --v-toolbar-base
+    #1E1E1E --v-panel-base
+    */
 }
 
 #content {
@@ -21,6 +30,94 @@
     /*noinspection CssUnresolvedCustomProperty*/
     color: var(--v-btn-text-primary);
 }
+
+.main-content-scrollbar {
+    height: calc(var(--app-height) - 48px);
+}
+
+.transparent-bg.alpha-0 {
+    --v-bg-alpha: 0;
+}
+.transparent-bg.alpha-10 {
+    --v-bg-alpha: 0.1;
+}
+.transparent-bg.alpha-20 {
+    --v-bg-alpha: 0.2;
+}
+.transparent-bg.alpha-30 {
+    --v-bg-alpha: 0.3;
+}
+.transparent-bg.alpha-40 {
+    --v-bg-alpha: 0.4;
+}
+.transparent-bg.alpha-50 {
+    --v-bg-alpha: 0.5;
+}
+.transparent-bg.alpha-60 {
+    --v-bg-alpha: 0.6;
+}
+.transparent-bg.alpha-70 {
+    --v-bg-alpha: 0.7;
+}
+.transparent-bg.alpha-80 {
+    --v-bg-alpha: 0.8;
+}
+.transparent-bg.alpha-90 {
+    --v-bg-alpha: 0.9;
+}
+.transparent-bg.alpha-100 {
+    --v-bg-alpha: 1;
+}
+.transparent-bg {
+    --v-panel-base-transparent-bg: rgba(30, 30, 30, var(--v-bg-alpha));
+    --v-panel-base-transparent: transparent;
+    --v-toolbar-base-transparent: transparent;
+    --v-primary-base-transparent: transparent; /* rgba(33, 150, 243, 0); */
+    --v-warning-base-transparent: transparent; /* rgba(251, 140, 0, 0.1); */
+}
+.transparent-bg.alpha-100,
+.transparent-bg .v-sheet:hover {
+    --v-panel-base-transparent-bg: var(--v-panel-base);
+    --v-panel-base-transparent: var(--v-panel-base);
+    --v-toolbar-base-transparent: var(--v-toolbar-base);
+    --v-primary-base-transparent: var(--v-primary-base);
+    --v-warning-base-transparent: var(--v-warning-base);
+}
+.transparent-bg .v-image {
+    opacity: calc(var(--v-bg-alpha) * 0.8 + 0.2);
+}
+.transparent-bg .v-sheet:hover .v-image {
+    opacity: 1;
+}
+
+.theme--dark.v-application {
+    background: transparent;
+}
+
+.v-application .transparent-bg .panel
+{
+    background-color: var(--v-panel-base-transparent-bg) !important;
+}
+
+.theme--dark.v-tabs-items,
+.theme--dark.v-card,
+.theme--dark.v-data-table,
+.theme--dark.v-tabs > .v-tabs-bar {
+    background-color: var(--v-panel-base-transparent) !important;
+}
+
+.theme--dark.v-btn.v-btn--has-bg,
+.theme--dark.v-text-field--solo > .v-input__control > .v-input__slot,
+.theme--dark.v-toolbar.v-sheet {
+    background-color: var(--v-toolbar-base-transparent) !important;
+}
+
+.transparent-bg .v-btn.primary {
+    background-color: var(--v-primary-base-transparent) !important;
+}
+.transparent-bg .v-btn.warning {
+    background-color: var(--v-warning-base-transparent) !important;
+}
 </style>
 
 <template>
@@ -29,7 +126,7 @@
             <the-sidebar></the-sidebar>
             <the-topbar></the-topbar>
 
-            <v-main id="content" :style="mainStyle">
+            <v-main id="content" :style="mainStyle" :class="`transparent-bg alpha-${bgAlpha}`">
                 <v-container id="page-container" fluid class="container px-3 px-sm-6 py-sm-6 mx-auto">
                     <router-view></router-view>
                 </v-container>
@@ -82,6 +179,11 @@ import TheUploadSnackbar from '@/components/TheUploadSnackbar.vue'
 export default class App extends Mixins(BaseMixin) {
     get title(): string {
         return this.$store.getters['getTitle']
+    }
+
+    get bgAlpha(): boolean {
+        const bg = this.$store.state.gui.dashboardCamBackgrounds[this.viewport]
+        return bg.enabled ? bg.alpha : 100
     }
 
     get mainBackground(): string {

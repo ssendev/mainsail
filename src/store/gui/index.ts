@@ -102,6 +102,32 @@ export const getDefaultState = (): GuiState => {
                 { name: 'miniconsole', visible: true },
             ],
         },
+        dashboardCamBackgrounds: {
+            mobile: {
+                align: 4,
+                alpha: 0.4,
+                contain: true,
+                enabled: false,
+            },
+            tablet: {
+                align: 4,
+                alpha: 0.4,
+                contain: true,
+                enabled: false,
+            },
+            desktop: {
+                align: 4,
+                alpha: 0.4,
+                contain: true,
+                enabled: false,
+            },
+            widescreen: {
+                align: 4,
+                alpha: 0.4,
+                contain: true,
+                enabled: false,
+            },
+        },
         editor: {
             escToClose: true,
             confirmUnsavedChanges: true,

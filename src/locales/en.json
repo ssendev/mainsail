@@ -605,6 +605,9 @@
         },
         "WebcamPanel": {
             "All": "All",
+            "Alpha": "Alpha",
+            "Background": "Background",
+            "Contain": "Contain",
             "FPS": "FPS",
             "Headline": "Webcam",
             "NoWebcam": "No webcam available. Add a webcam under \"Interface Settings\" -> \"Webcams\".",
